@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	                    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+	                    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+	
+	<context:component-scan base-package="com.multicampus.biz"/>
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+	
+	<!-- Spring JDBC 설정 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+	<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
+	<property name="url" value="jdbc:oracle:thin:@locationhost:1521:xe"></property>
+	<property name="username" value="hr"></property>
+	<property name="password" value="hr"></property>
+	</bean>
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+	<property name="dataSource" ref="dataSource"></property>
+	</bean>
+
+	<!-- Advice 클래스 등록 
+	<bean id="log" class="com.multicampus.biz.common.LogAdvice"></bean>
+	-->
+	
+	<!-- AOP 설정
+	<aop:config>
+		<aop:pointcut id="allPointcut" 
+		expression="execution(* com.multicampus.biz..*Impl.*(..))"/>
+		
+		<aop:pointcut id="getPointcut" 
+		expression="execution(* com.multicampus.biz..*Impl.get*(..))"/>
+		
+		<aop:aspect ref="log">
+			<aop:before pointcut-ref="allPointcut" 
+			            method="printLog"/>
+		</aop:aspect>
+		
+		<aop:aspect ref="afterReturning">
+		<aop:after-returning method="afterLog" pointcut-ref="getPointcut" returning="returnObj" />
+		</aop:aspect>
+		
+		<aop:aspect ref="afterThrowing">
+		<aop:after-throwing method="exceptionLog" pointcut-ref="allPointcut" throwing="exceptionObj"/>
+		</aop:aspect>
+		
+		<aop:aspect ref="around">
+		<aop:around method="aroundLog" pointcut-ref="allPointcut"/>
+		</aop:aspect>
+	</aop:config>
+	
+	 -->
+	
+	
+<!--	
+	<bean id="userService" class="com.multicampus.biz.user.impl.UserServiceImpl">
+		<property name="userDAO" ref="userDAO"/>
+	</bean>
+	
+	<bean id="userDAO" class="com.multicampus.biz.user.impl.UserDAO"></bean>
+  	
+	<bean id="boardService" class="com.multicampus.biz.board.impl.BoardServiceImpl">
+		<property name="boardDAO" ref="boardDAO"/>
+	</bean>
+	
+	<bean id="boardDAO" class="com.multicampus.biz.board.impl.BoardDAO"></bean>
+-->
+
+</beans>
+
+
+
+
+
+
+
+
+
+
+
