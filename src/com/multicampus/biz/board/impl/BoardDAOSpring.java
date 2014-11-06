@@ -26,7 +26,7 @@ public class BoardDAOSpring {
 
 	// 글 등록
 	public void insertBoard(BoardVO vo){
-		spring.update(BOARD_INSERT, vo.getTitle(), vo.getWriter(), vo.getContent());
+		spring.update(BOARD_INSERT, vo.getSeq(), vo.getTitle(), vo.getWriter(), vo.getContent());
 	}
 	
 	// 글 수정

@@ -11,7 +11,7 @@ import com.multicampus.biz.board.BoardVO;
 @Service("boardService")
 public class BoardServiceImpl implements BoardService {
 	@Autowired
-	private BoardDAO boardDAO;
+	private BoardDAOSpring boardDAO;
 
 //	public BoardServiceImpl(BoardDAO boardDAO) {
 //		super();
@@ -23,6 +23,7 @@ public class BoardServiceImpl implements BoardService {
 //	}
 
 	public void insertBoard(BoardVO vo) {
+		boardDAO.insertBoard(vo);
 		boardDAO.insertBoard(vo);
 	}
 

@@ -17,6 +17,7 @@ public class BoardServiceClient {
 		
 		// 3. 검색된 객체의 메서드를 테스트한다.
 		BoardVO vo = new BoardVO();
+		vo.setSeq(100);
 		vo.setTitle("JDBC 제목");
 		vo.setWriter("채규태");
 		vo.setContent("Spring JDBC 내용................");
